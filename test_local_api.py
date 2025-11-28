@@ -4,10 +4,12 @@ import time
 
 API_URL = "http://192.168.200.215:3000/api/v1/verifyDomain"
 
+# Body should be EXACTLY what you put in Postman (raw JSON)
 payload = {
     "bankDomainName": "testbankt1"
 }
 
+# Raw JSON MUST have this header
 headers = {
     "Content-Type": "application/json"
 }
@@ -15,15 +17,20 @@ headers = {
 time.sleep(3)
 
 try:
-    print("Sending POST request...")
+    print("Sending POST...")
     response = requests.post(API_URL, json=payload, headers=headers)
+    print("Status code:", response.status_code)
+    print("Response text:", response.text)
+
     response.raise_for_status()
+
     data = response.json()
 
+    # Save API response in artifact file
     with open("local_api_output.json", "w") as f:
         json.dump(data, f, indent=4)
 
-    print("Success!")
+    print("Saved as artifact!")
 
 except Exception as e:
     with open("local_api_output.json", "w") as f:
