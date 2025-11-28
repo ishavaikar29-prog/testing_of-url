@@ -2,7 +2,7 @@ import requests
 import json
 import time
 
-API_URL = " http://192.168.200.215:3000/api/v1/verifyDomain"
+API_URL = " https://dev.app.creditos.in/api/v1/verifyDomain"
 
 # Wait for API to boot up
 time.sleep(3)
